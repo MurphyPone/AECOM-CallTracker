@@ -1,0 +1,139 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Zonatel Call Stats</title>
+    <style media="screen">
+
+      body {
+        font-family: Helvetica;
+      }
+
+      header {
+        height: 10%;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      footer {
+        padding: 10px;
+        color: #949494;
+        font-family: Helvetica;
+        font-size: .75em;
+        height: 10%;
+        text-align: center;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-areas:  '1'
+                              '2'
+                              '3'
+                              '4'
+                              '5'
+                              '6';
+        height: 70%;
+        margin-left: 2em;
+        margin-right: 2em;
+      }
+
+      .grid-item {
+        color: white;
+        font-size: 2em;
+        padding: 10px;
+        font-size: 1em;
+      }
+
+      .big-num {
+        font-size: 2em;
+      }
+
+      #banner1 {
+        background: linear-gradient(90deg, #080c3d 0%, #0024a7 20%,
+                                           #080c3d 21%, #0024a7 30%, #0024a7 70%, #080c3d 80%,
+                                           #0024a7 81%, #080c3d 100% );
+      }
+
+      #banner2 {
+        background: linear-gradient(90deg, #001574 0%, #146bf0 20%,
+                                           #001574 21%, #146bf0 30%, #146bf0 70%, #001574 80%,
+                                           #146bf0 81%, #001574 100% );
+      }
+
+      #banner3 {
+        background: linear-gradient(90deg, #631403 0%, #c83a09  20%,
+                                           #631403 21%, #c83a09 30%, #c83a09 70%, #631403 80%,
+                                           #c83a09 81%, #631403 100% );
+      }
+
+      #banner4 {
+        background: linear-gradient(90deg, #324603 0%, #96d214  20%,
+                                           #324603 21%, #96d214 30%, #96d214 70%, #324603 80%,
+                                           #96d214 81%, #324603 100% );
+      }
+
+      #banner5 {
+        background: linear-gradient(90deg, #1e0f50 0%, #5f46c8  20%,
+                                           #1e0f50 21%, #5f46c8 30%, #5f46c8 70%, #1e0f50 80%,
+                                           #5f46c8 81%, #1e0f50 100% );
+      }
+
+      #banner6 {
+        background: linear-gradient(90deg, #1e4682 0%, #5ac8fa  20%,
+                                           #1e4682 21%, #5ac8fa 30%, #5ac8fa 70%, #1e4682 80%,
+                                           #5ac8fa 81%, #1e4682 100% );
+      }
+
+      /* white space around the top / bottom given by header and footer*/
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="https://www.cdbg-dr.pr.gov/wp-content/uploads/2018/04/logo@2x-en.png" width="250" alt="">
+    </header>
+      <div class="grid-container">
+        <div class="grid-item" id="banner1" style="grid-area: 1;">
+          <a style="visibility: hidden;">placeholder</a>
+        </div>
+        <div class="grid-item" id="banner2" style="grid-area: 2;">
+          <span style="float: left;" >Calls Presented Today</span>
+          <span style="float: right;" >Agents Idle</span>
+          <br />
+          <span class="big-num" style=" float: left; vertical-align: center;; padding-bottom: none;">104</span>
+          <span class="big-num" style=" float: right">0</span>
+
+        </div>
+        <div class="grid-item" id="banner3" style="grid-area: 3;">
+          <span style="float: left;" >Calls Answered Today</span>
+          <span style="float: right;">Agents Available</span>
+          <br />
+          <span class="big-num" style=" float: left">103</span>
+          <span class="big-num" style=" float: right">0</span>
+        </div>
+        <div class="grid-item" id="banner4" style="grid-area: 4;">
+          <span style="float: left;">Avg Call Duration</span>
+          <br />
+          <span class="big-num" style=" float: left">3:04 mins</span>
+        </div>
+        <div class="grid-item" id="banner5" style="grid-area: 5;">
+            <span style="float: left;">Average Talk Time</span>
+            <span style="float: right;">Missed Calls</span>
+            <br />
+            <span class="big-num" style=" float: left">2:12 mins</span>
+            <span class="big-num" style=" float: right">1</span>
+        </div>
+        <div class="grid-item" id="banner6" style="grid-area: 6;">
+          <a style="visibility: hidden;">placeholder</a>
+        </div>
+      </div>
+    <footer>
+        <center>
+          <img src="https://www.cdbg-dr.pr.gov/wp-content/uploads/2019/07/banner-r30-en-center.jpg" width="150" alt="R3">
+
+        </center>
+
+        <span style="float: left;">If you find an issue or have a suggestion, please file an <a href="https://github.com/MurphyPone/AECOM-CallTracker/issues" style="color:blue;" target="_blank">issue</a></span>
+        <span style="float: right;">Si encuentra un problema o tiene una sugerencia, presente un <a href="https://github.com/MurphyPone/AECOM-CallTracker/issues" style="color:blue;" target="_blank">problema</a></span>
+    </footer>
+  </body>
+</html>
