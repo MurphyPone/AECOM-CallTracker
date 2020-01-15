@@ -9,5 +9,4 @@ Some files rely on login credentials/config of the format:
 URL = "website.com"
 USERNAME = "user@email.com"
 PASSWORD = "hunter12"
-
 ```
