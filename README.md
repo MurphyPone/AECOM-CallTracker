@@ -16,7 +16,7 @@ URL = "https://teamaecompr.mojohelpdesk.com/login"
 USERNAME = "user@email.com"
 PASSWORD = "hunter12"
 DOWNLOAD_PATH = f"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\downloads"
-EXECUTABLE_PATH = r'"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\geckodriver.exe'
+EXECUTABLE_PATH = r'C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\geckodriver.exe'
 ```
 
 Once the config has been filled out, the script can be executed by typing:
