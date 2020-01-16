@@ -7,6 +7,8 @@ Required modules for this project can be installed by running the following comm
 
 `pip install -r requirements.txt`
 
+FireFox is also necessary to execute this project.  The WebDriver associated with the version of this project is included in this repository as `geckodriver.exe`
+
 # Use
 Some user-specific information is required to run the script.  Create a file in the root directory of this folder called `config.py` and include the fields below
 
