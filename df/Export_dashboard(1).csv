@@ -1,7 +1,0 @@
-data:text/csv;charset=utf-8,"Title of Report","Dashboard"
-"Start date","2020-01-15"
-"End date","2020-01-16"
-"Filters"
-"Queues","Damage Assessment_d","Intake/Eligibility_i","Status Checks_s"
-"Closed","Created","Agent Messages","Waiting for response","Backlog","First Assignment Average","Average Solved Time"
-"69","69","0","0","0","-","8min 3s"
