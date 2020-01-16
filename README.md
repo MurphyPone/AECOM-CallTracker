@@ -19,6 +19,12 @@ DOWNLOAD_PATH = f"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\downloads"
 EXECUTABLE_PATH = r'"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\geckodriver.exe'
 ```
 
+Once the config has been filled out, the script can be executed by typing:
+
+`python main.py`
+
+in the command line from the root directory.  This will run the build and run scraper utility if it has not already been built, and then it will launch the web page which can be viewed locally at `localhost:5000` or `127.0.0.1:5000`.
+
 # Tips
 In case one of the elements on the desired page changes location, CSS attribute name, identifier, etc. the following command can be executed in the web developer console to help identify the new identification solution:
 
