@@ -11,10 +11,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+import config
+
 # Globals that would need to be configured
 executable_path = r'F:\Users\Peter\Documents\Zonatel_scraper\Zonatel_scraper\geckodriver.exe'
 
-fp = webdriver.FirefoxProfile() 
+fp = webdriver.FirefoxProfile()
 fp.set_preference("browser.download.folderList", 2)
 fp.set_preference("browser.download.dir", "F:\\Users\\Peter\\Documents\\Zonatel_scraper\\Zonatel_scraper\\downloads")
 fp.set_preference("browser.helperApps.neverAsk.openFile", "application/csv, txt/csv")
@@ -26,11 +28,11 @@ driver = webdriver.Firefox(firefox_profile=fp, executable_path=executable_path)
 driver.get("https://mybilling.zonatel.com:8444/index.html")
 driver.set_window_size(1173, 817)
 driver.find_element(By.ID, "pb_auth_user").click()
-driver.find_element(By.ID, "pb_auth_user").send_keys("luis.p.torres@aecom.com")
+driver.find_element(By.ID, "pb_auth_user").send_keys("USERNAME")
 driver.find_element(By.NAME, "log").click()
 driver.find_element(By.CSS_SELECTOR, "html").click()
 driver.find_element(By.ID, "pb_auth_password").click()
-driver.find_element(By.ID, "pb_auth_password").send_keys("@ECOMponce210")
+driver.find_element(By.ID, "pb_auth_password").send_keys("PASSWORD")
 driver.find_element(By.CSS_SELECTOR, ".tabFormButton").click()
 driver.execute_script("window.scrollTo(0,0)")
 
@@ -59,11 +61,9 @@ driver.find_element(By.CSS_SELECTOR, "#ext-gen935 > div:nth-child(1) > li:nth-ch
 time.sleep(5)
 driver.find_element(By.CSS_SELECTOR, "#ext-gen1153").click()
 
-#driver.find_element(By.ID, "x-form-el-ext-comp-1364").send_keys("23:59:59")     # Change hours to be hours of the day  
+#driver.find_element(By.ID, "x-form-el-ext-comp-1364").send_keys("23:59:59")     # Change hours to be hours of the day
 driver.find_element_by_xpath("//*[contains(text(), 'Show Records')]").click()  # Click show records to reveal download
 time.sleep(3)
 driver.find_element_by_xpath("//*[contains(text(), 'Download')]").click()  # Click download
 print("downloading...")
 time.sleep(30)
-
-

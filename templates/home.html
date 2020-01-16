@@ -1,7 +1,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Zonatel Call Stats</title>
+    <meta http-equiv="refresh" content="60"> <!--Refresh the page every minute to prompt re-scrape()-->
+    <title>Aecom Call Tracker</title>
     <style media="screen">
 
       body {
@@ -60,15 +61,15 @@
       }
 
       #banner3 {
-        background: linear-gradient(90deg, #631403 0%, #c83a09  20%,
-                                           #631403 21%, #c83a09 30%, #c83a09 70%, #631403 80%,
-                                           #c83a09 81%, #631403 100% );
-      }
-
-      #banner4 {
         background: linear-gradient(90deg, #324603 0%, #96d214  20%,
                                            #324603 21%, #96d214 30%, #96d214 70%, #324603 80%,
                                            #96d214 81%, #324603 100% );
+      }
+
+      #banner4 {
+        background: linear-gradient(90deg,  #631403 0%, #c83a09  20%,
+                                            #631403 21%, #c83a09 30%, #c83a09 70%, #631403 80%,
+                                            #c83a09 81%, #631403 100% );
       }
 
       #banner5 {
@@ -97,30 +98,28 @@
         </div>
         <div class="grid-item" id="banner2" style="grid-area: 2;">
           <span style="float: left;" >Calls Presented Today</span>
-          <span style="float: right;" >Agents Idle</span>
+          <span style="float: right;" >Coverage</span>
           <br />
-          <span class="big-num" style=" float: left; vertical-align: center;; padding-bottom: none;">104</span>
-          <span class="big-num" style=" float: right">0</span>
+          <span class="big-num" style=" float: left; vertical-align: center;; padding-bottom: none;">{{ data['total'] }}</span>
+          <span class="big-num" style=" float: right">%{{ (data['total'] - data['missed']) / (data['total'] + 1) }}</span>
 
         </div>
         <div class="grid-item" id="banner3" style="grid-area: 3;">
           <span style="float: left;" >Calls Answered Today</span>
           <span style="float: right;">Agents Available</span>
           <br />
-          <span class="big-num" style=" float: left">103</span>
+          <span class="big-num" style=" float: left">{{ data['successful'] }}</span>
           <span class="big-num" style=" float: right">0</span>
         </div>
         <div class="grid-item" id="banner4" style="grid-area: 4;">
-          <span style="float: left;">Avg Call Duration</span>
+          <span style="float: left;">Calls Missed Today</span>
           <br />
-          <span class="big-num" style=" float: left">3:04 mins</span>
+          <span class="big-num" style=" float: left">{{ data['missed'] }}</span>
         </div>
         <div class="grid-item" id="banner5" style="grid-area: 5;">
-            <span style="float: left;">Average Talk Time</span>
-            <span style="float: right;">Missed Calls</span>
+            <span style="float: left;">Follow-up Calls</span>
             <br />
-            <span class="big-num" style=" float: left">2:12 mins</span>
-            <span class="big-num" style=" float: right">1</span>
+            <span class="big-num" style=" float: left">{{ data['follow_up'] }}</span>
         </div>
         <div class="grid-item" id="banner6" style="grid-area: 6;">
           <a style="visibility: hidden;">placeholder</a>
@@ -132,7 +131,9 @@
 
         </center>
 
-        <span style="float: left;">If you find an issue or have a suggestion, please file an <a href="https://github.com/MurphyPone/AECOM-CallTracker/issues" style="color:blue;" target="_blank">issue</a></span>
+        <span style="float: left;">If you need assistance, please create a <a href="https://teamaecompr.mojohelpdesk.com/" style="color:blue;" target="_blank">ticket</a></span>
+        <br>
+        <span style="float: left;">If you found a bug on this site, please file an <a href="https://teamaecompr.mojohelpdesk.com/" style="color:blue;" target="_blank">issue</a></span>
         <span style="float: right;">Si encuentra un problema o tiene una sugerencia, presente un <a href="https://github.com/MurphyPone/AECOM-CallTracker/issues" style="color:blue;" target="_blank">problema</a></span>
     </footer>
   </body>
