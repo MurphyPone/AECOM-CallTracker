@@ -1,9 +1,11 @@
 # AECOM-CallTracker
-Simple automated analysis of customer service calls
+This project is a twofold effort to provide simple data analysis of a call center team's activity.  The first portion of the project contains a webscraping utility which routinely pulls data from one of the call center's intermediary tracking websites, processes the gathered data, and feeds it into the second portion of the project which displays the data on a simple flask web page. 
 
 # Requirements
 
-`pip install selenium pandas`
+Required modules for this project can be installed by running the following command from the command line at the root directory of this project:
+
+`pip install -r requirements.txt`
 
 # Use
 Some user-specific information is required to run the script.  Create a file in the root directory of this folder called `config.py` and include the fields below
@@ -18,8 +20,10 @@ EXECUTABLE_PATH = r'"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\geckodri
 ```
 
 # Tips
-In
-web debugging: `$x("//*[contains(text(), 'Follow Up Calls_f')]")`
+In case one of the elements on the desired page changes location, CSS attribute name, identifier, etc. the following command can be executed in the web developer console to help identify the new identification solution:
+
+
+`$x("//*[contains(text(), '<text_of_element>')]")`
 
 
 # TODO
