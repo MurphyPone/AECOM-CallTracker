@@ -5,7 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 data = {
-    "total": 3,
+    "total": 0,
     "successful": 0,
     "missed": 0,
     "follow_up": 0
