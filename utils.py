@@ -27,6 +27,7 @@ def clean_up():
 
 # Configure web driver
 def build_driver():
+    print("building driver..")
     fp = webdriver.FirefoxProfile()
     fp.set_preference("browser.download.folderList", 2)
     fp.set_preference("browser.download.dir", DOWNLOAD_PATH)
@@ -69,6 +70,8 @@ def fix_dates(driver):
 
 # Gets .csv logging missed calls
 def first_bucket(driver, filters, download, apply):
+    filters.click()
+    time.sleep(5)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[5].click()
     apply.click()
     time.sleep(5)
@@ -76,11 +79,11 @@ def first_bucket(driver, filters, download, apply):
 
     # clear filters Repeat
     driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
-    filters.click()
-    time.sleep(1)
+    time.sleep(2)
 
 # Gets .csv logging successful calls
 def second_bucket(driver, filters, download, apply):
+    filters.click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[2].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[4].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[6].click()
@@ -90,27 +93,31 @@ def second_bucket(driver, filters, download, apply):
 
     # clear filters Repeat
     driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[23].click()             # For whatever reason the number of clears increases...
-    filters.click()
-    time.sleep(1)
+    time.sleep(2)
 
+    # Gets .csv logging follow up calls
 def third_bucket(driver, filters, download, apply):
+    filters.click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[3].click()
+    apply.click()
     time.sleep(5)
     download.click()
+    driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
 
 def download_files(driver):
     # Instantiate common elements
     filters = driver.find_element_by_xpath("//*[contains(text(), '+filters')]")
     download = driver.find_element_by_xpath("//*[contains(@ng-click, 'activateOnDownloadCsv')]")
-    filters.click()
     apply = driver.find_element_by_xpath("//*[contains(@ng-click, 'applyFilterBox()')]")
-    time.sleep(1)
+    time.sleep(2)
 
     first_bucket(driver, filters, download, apply)  # Get first .csv
     second_bucket(driver, filters, download, apply) # Get second .csv
     third_bucket(driver, filters, download, apply)  # Get third .csv
 
+
 def extract_from_csv(data):
+    print("Extracting data from .csv files...")
     for filename in os.listdir(DOWNLOAD_PATH):
         try:
             d = pd.read_csv(DOWNLOAD_PATH+ "/" +str(filename), usecols=['Title of Report'])
@@ -126,13 +133,16 @@ def extract_from_csv(data):
 
         data['total'] = data['missed'] + data['successful']
 
+        if data['total'] == 0:
+                data['coverage'] = 0
+        else:
+            data['coverage'] = int((data['successful'] / data['total']) *100)
+
 def scrape(data, driver, build=False):
-    print(data)
-    clean_up()                      # delete old files if present
+    clean_up()                          # delete old files if present
     if build == True:
         login(driver)                   # Logs in and navigates to dashboard
-    else:
-        fix_dates(driver)               # sets the daterange to today + tomorrow
-        download_files(driver)          # Downloads the three .csv files
-        extract_from_csv(data)          # Extracts relevant fields from the downloaded files
-    print(data)
+        fix_dates(driver)               # sets the daterange to today + tomorrow # TODO may need to be moved
+
+    download_files(driver)              # Downloads the three .csv files
+    extract_from_csv(data)              # Extracts relevant fields from the downloaded files

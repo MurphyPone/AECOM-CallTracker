@@ -1,5 +1,5 @@
 # AECOM-CallTracker
-This project is a twofold effort to provide simple data analysis of a call center team's activity.  The first portion of the project contains a webscraping utility which routinely pulls data from one of the call center's intermediary tracking websites, processes the gathered data, and feeds it into the second portion of the project which displays the data on a simple flask web page. 
+This project is a twofold effort to provide simple data analysis of a call center team's activity.  The first portion of the project contains a webscraping utility which routinely pulls data from one of the call center's intermediary tracking websites, processes the gathered data, and feeds it into the second portion of the project which displays the data on a simple flask web page.
 
 # Requirements
 
@@ -40,3 +40,8 @@ In case one of the elements on the desired page changes location, CSS attribute 
   - either use a timer, a <meta tag>, or manual refresh
   - ensure duplicate windows are not created
 - Make sure the spanish translations match up
+- Add try/Catch statements around each element query
+- Add OSX support
+
+# Known Bugs
+- Filter clear button index changes occasionally depending on how many active elements are on screen

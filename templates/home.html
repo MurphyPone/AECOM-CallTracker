@@ -1,7 +1,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="60"> <!--Refresh the page every minute to prompt re-scrape()-->
+    <!--meta http-equiv="refresh" content="60">  //Refresh the page every minute to prompt re-scrape()-->
     <title>Aecom Call Tracker</title>
     <style media="screen">
 
@@ -101,15 +101,13 @@
           <span style="float: right;" >Coverage</span>
           <br />
           <span class="big-num" style=" float: left; vertical-align: center;; padding-bottom: none;">{{ data['total'] }}</span>
-          <span class="big-num" style=" float: right">%{{ (data['total'] - data['missed']) / (data['total'] + 1) }}</span>
+          <span class="big-num" style=" float: right">{{ data['coverage'] }}%</span>
 
         </div>
         <div class="grid-item" id="banner3" style="grid-area: 3;">
           <span style="float: left;" >Calls Answered Today</span>
-          <span style="float: right;">Agents Available</span>
           <br />
           <span class="big-num" style=" float: left">{{ data['successful'] }}</span>
-          <span class="big-num" style=" float: right">0</span>
         </div>
         <div class="grid-item" id="banner4" style="grid-area: 4;">
           <span style="float: left;">Calls Missed Today</span>
