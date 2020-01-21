@@ -1,7 +1,0 @@
-data:text/csv;charset=utf-8,"Title of Report","Dashboard"
-"Start date","2020-01-19"
-"End date","2020-01-20"
-"Filters"
-"Queues","Missed Call_m"
-"Closed","Created","Agent Messages","Waiting for response","Backlog","First Assignment Average","Average Solved Time"
-"0","0","0","0","0","-","-"
