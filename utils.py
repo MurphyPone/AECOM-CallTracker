@@ -23,10 +23,14 @@ import os
 # Remove old files if present
 def clean_up():
     for filename in os.listdir(DOWNLOAD_PATH):
-        try:
-            os.remove(DOWNLOAD_PATH + str(filename))
-        except FileNotFoundError:
-            print(f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files")
+        if ".gitkeep" not in filename:
+            try:
+                os.remove(DOWNLOAD_PATH + str(filename))
+            except FileNotFoundError:
+                print(f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files")
+        else: 
+            pass
+
 
 # Configure web driver
 def build_driver():
@@ -37,13 +41,16 @@ def build_driver():
     fp.set_preference("browser.download.dir", DOWNLOAD_PATH)
     fp.set_preference("browser.helperApps.neverAsk.openFile", "application/csv, txt/csv")
     fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/csv, txt/csv, text/csv, attachment/csv, multipart/form-data")
+    
+    cap = DesiredCapabilities().FIREFOX
+    cap["marionette"] = True
 
-    return webdriver.Firefox(firefox_profile=fp, executable_path=EXECUTABLE_PATH)
+    return webdriver.Firefox(firefox_profile=fp, capabilities=cap, executable_path=EXECUTABLE_PATH)
 
 def login(driver):
     # Navigate to and login
     driver.get(URL)
-    driver.set_window_size(1173, 817)
+    driver.set_window_size(1200, 800)
     driver.find_element(By.ID, "user_email1").click()
     driver.find_element(By.ID, "user_email1").send_keys(USERNAME)
     driver.find_element(By.CSS_SELECTOR, "html").click()

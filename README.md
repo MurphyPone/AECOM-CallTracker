@@ -7,7 +7,7 @@ Required modules for this project can be installed by running the following comm
 
 `pip install -r requirements.txt`
 
-FireFox is also necessary to execute this project.  The WebDriver associated with the version of this project is included in this repository as `geckodriver.exe`
+FireFox is also necessary to execute this project.  The WebDrivers associated with the version of this project are included in this repository as under `drivers/geckodriver...`
 
 # Use
 Some user-specific information is required to run the script.  Create a file in the root directory of this folder called `config.py` and include the fields below
@@ -17,8 +17,7 @@ Some user-specific information is required to run the script.  Create a file in 
 URL = "https://teamaecompr.mojohelpdesk.com/login"
 USERNAME = "user@email.com"
 PASSWORD = "hunter12"
-PATH = f"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker"
-OS = "Windows" # Options include "Windows", "OSX", "Linux"
+OS = "Windows"          # Options include "Windows", "OSX", "Linux"
 ```
 
 Once the config has been filled out, the script can be executed by typing:
@@ -41,7 +40,8 @@ In case one of the elements on the desired page changes location, CSS attribute 
   - [ ] ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Make sure the spanish translations match up
 - [ ] Add try/Catch statements around each element query
-- [ ] Add OSX support
+    - [ ] Click each previous filter in filter box rather than "clear" button...
+- [x] Add OSX support
 - [ ] Add Linux support for hosting on an AWS instance
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
 
