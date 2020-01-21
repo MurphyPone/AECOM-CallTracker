@@ -35,13 +35,14 @@ In case one of the elements on the desired page changes location, CSS attribute 
 
 
 # TODO
-- Webpage formatting with logos
-- Refresh page when calling global scrape method
-  - either use a timer, a <meta tag>, or manual refresh
-  - ensure duplicate windows are not created
-- Make sure the spanish translations match up
-- Add try/Catch statements around each element query
-- Add OSX support
+- [x] Webpage formatting with logos
+- [ ] Refresh page when calling global scrape method
+  - [x] either use a timer, a <meta tag>, or manual refresh
+  - [ ] ensure duplicate windows are not created
+- [ ] Make sure the spanish translations match up
+- [ ] Add try/Catch statements around each element query
+- [ ] Add OSX support
 
 # Known Bugs
 - Filter clear button index changes occasionally depending on how many active elements are on screen
+
