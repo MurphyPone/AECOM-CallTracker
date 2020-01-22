@@ -33,14 +33,13 @@
         height: 70%;
         width: 100%;
         grid-template-areas:  'tl tr'
-                              'bl br'
-                              'cv cv';
+                              'bl br';
       }
 
       .grid-item {
         color: white;
         font-size: 2em;
-        padding: 15px;
+        padding: 10px;
         font-size: 1em;
         margin: 5px;
         border-radius: 5px;
@@ -48,8 +47,6 @@
 
       .big-num {
         font-size: 4em;
-        margin-bottom: 0px;
-        padding-bottom: 0px;
       }
 
       .big-text {
@@ -66,11 +63,11 @@
       }
 
       #banner3 {
-        background: linear-gradient(90deg,  #4eb289 0%,  #2D654E 100%);
+        background: linear-gradient(90deg,  #96d214 0%,  #324603 100%);
       }
 
       #banner4 {
-        background: linear-gradient(90deg,   #dd5331 0%, #7e1802 100%);
+        background: linear-gradient(90deg,  #c83a09 0%, #631403 100%);
       }
 
       #banner5 {
@@ -78,8 +75,7 @@
       }
 
       #banner6 {
-        background: linear-gradient(90deg, #2D654E 0%, #4eb289 {{data['coverage']}}%, #dd5331 {{data['coverage']-1}}%, #dd5331 100%); 
-        /* background: linear-gradient(90deg, #374612 0%, #a3ce44 {{data['coverage']}}%, #dd5331 {{data['coverage']-1}}%, #dd5331 100%); */
+        background: linear-gradient(90deg, #1e4682 0%, #5ac8fa  100%);
       }
 
       /* white space around the top / bottom given by header and footer*/
@@ -98,10 +94,12 @@
         
         <div class="grid-item" id="banner2" style="grid-area: tl;">
           <span class="big-text" style="float: left;" >Calls Presented Today</span>
+          <span class="big-text" style="float: right;" >Coverage</span>
           <br />
           <br />
           <br />
           <span class="big-num" style=" float: left; vertical-align: center;; padding-bottom: none;">{{ data['total'] }}</span>
+          <span class="big-num" style=" float: right">{{ data['coverage'] }}%</span>
         </div>
        
         <div class="grid-item" id="banner3" style="grid-area: tr;">
@@ -126,10 +124,6 @@
           <br />
           <br />
           <span class="big-num" style="float: left">{{ data['follow_up'] }}</span>       
-        </div>
-
-        <div class="grid-item" id="banner6" style="grid-area: cv; height: 60%">
-          <span style="float: left; line-height: 3em; font-size: 2em;">Coverage: {{data['coverage']}}%</span>
         </div>
         
       </div>

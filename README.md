@@ -29,21 +29,23 @@ in the command line from the root directory.  This will run the build and run sc
 # Tips
 In case one of the elements on the desired page changes location, CSS attribute name, identifier, etc. the following command can be executed in the web developer console to help identify the new identification solution:
 
-
 `$x("//*[contains(text(), '<text_of_element>')]")`
-
 
 # TODO
 - [x] Webpage formatting with logos
-- [ ] Refresh page when calling global scrape method
+- [x] Refresh page when calling global scrape method
   - [x] either use a timer, a `<meta http-equiv="refresh" content="60">` tag, or manual refresh
-  - [ ] ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
+- [ ] ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Make sure the spanish translations match up
-- [ ] Add try/Catch statements around each element query
-    - [ ] Click each previous filter in filter box rather than "clear" button...
-- [x] Add OSX support
-- [ ] Add Linux support for hosting on an AWS instance
+- [x] Add try/Catch statements around each element query
+    - [x] Click each previous filter in filter box rather than "clear" button...
+    - [x] Parse .csv files by filter tags rather than filename
+- Additional support:
+    - [x] Add OSX support
+    - [ ] Add Linux support for hosting on an AWS instance
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
+- [ ] Tweak the execution time
+- [ ] Duplicate downloads 
 
 # Known Bugs
 - Filter clear button index changes occasionally depending on how many active elements are on screen

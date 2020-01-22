@@ -79,6 +79,7 @@ def fix_dates(driver):
     start_date.send_keys(start_date_val.isoformat())
     end_date.send_keys(end_date_val.isoformat())
 
+
 # Gets .csv logging missed calls
 def first_bucket(driver, filters, download, apply):
     filters.click()
@@ -89,31 +90,55 @@ def first_bucket(driver, filters, download, apply):
     download.click()
 
     # clear filters Repeat
-    driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
+    # driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
+    filters.click()
+    time.sleep(5)
+    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[5].click()
     time.sleep(2)
+    apply.click()
+    time.sleep(5)
+
 
 # Gets .csv logging successful calls
 def second_bucket(driver, filters, download, apply):
     filters.click()
+    time.sleep(5)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[2].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[4].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[6].click()
     apply.click()
     time.sleep(5)
     download.click()
-
-    # clear filters Repeat
-    driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[23].click()             # For whatever reason the number of clears increases...
     time.sleep(2)
 
-    # Gets .csv logging follow up calls
+    # clear filters Repeat
+    #driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[23].click()             # For whatever reason the number of clears increases...
+    filters.click()
+    time.sleep(5)
+    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[2].click()
+    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[4].click()
+    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[6].click()
+    time.sleep(5)
+    apply.click()
+
+
+# Gets .csv logging follow up calls
 def third_bucket(driver, filters, download, apply):
     filters.click()
+    time.sleep(5)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[3].click()
     apply.click()
     time.sleep(5)
     download.click()
-    driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
+
+    filters.click()
+    time.sleep(5)
+    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[3].click()
+    time.sleep(2)
+    apply.click()
+    time.sleep(5)
+    # driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
+
 
 def download_files(driver):
     # Instantiate common elements
@@ -129,27 +154,34 @@ def download_files(driver):
 
 def extract_from_csv(data):
     print("Extracting data from .csv files...")
-    for filename in os.listdir(DOWNLOAD_PATH):        
-        try:
-            d = pd.read_csv(DOWNLOAD_PATH + str(filename), usecols=['Title of Report'])
-        except FileNotFoundError:
-            print(f"{filename} was not found, fetching new files")
+    for filename in os.listdir(DOWNLOAD_PATH):    
+        if ".gitkeep" not in filename:
+            try:
+                #print(filename)
+                d = pd.read_csv(DOWNLOAD_PATH + str(filename), usecols=["Title of Report"]) # usecols=["Title of Report"], , engine='python')
+                #print(d['Title of Report'][3], int(d['Title of Report'][5]) )
+            except FileNotFoundError:
+                print(f"{filename} was not found, fetching new files")
 
-        if filename == "Export_dashboard.csv":
-            data['missed'] = int(d['Title of Report'][5])
-        if filename == "Export_dashboard(1).csv":
-            data['successful'] = int(d['Title of Report'][5])
-        if filename == "Export_dashboard(2).csv":
-            data['follow_up'] = int(d['Title of Report'][5])
+            if d['Title of Report'][3] == "Missed Call_m":
+                data['missed'] = int(d['Title of Report'][5])
+            if d['Title of Report'][3] == "Damage Assessment_d":
+                data['successful'] = int(d['Title of Report'][5])
+            if d['Title of Report'][3] == "Follow Up Calls_f":
+                data['follow_up'] = int(d['Title of Report'][5])
 
-        data['total'] = data['missed'] + data['successful']
+            data['total'] = data['missed'] + data['successful']
 
-        if data['total'] == 0:
-                data['coverage'] = 0
-        else:
-            data['coverage'] = int((data['successful'] / data['total']) * 100)
+            if data['total'] == 0:
+                    data['coverage'] = 0
+            else:
+                data['coverage'] = int((data['successful'] / data['total']) * 100)
+        else: 
+            pass
+
 
 def scrape(data, driver, build=False):
+    extract_from_csv(data)
     clean_up()                          # delete old files if present
     if build == True:
         login(driver)                   # Logs in and navigates to dashboard

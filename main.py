@@ -21,9 +21,9 @@ elif OS == "Linux":
     print("Linux is not yet supported")
     sys.exit(1)
 
-print(f"PATH:\t\t\t{PATH}")
-print(f"DOWNLOAD_PATH:\t\t{DOWNLOAD_PATH}")
-print(f"EXECUTABLE_PATH:\t{EXECUTABLE_PATH}")
+# print(f"PATH:\t\t\t{PATH}")
+# print(f"DOWNLOAD_PATH:\t\t{DOWNLOAD_PATH}")
+# print(f"EXECUTABLE_PATH:\t{EXECUTABLE_PATH}")
 
 data = {
     "total": 0,
