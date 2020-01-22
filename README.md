@@ -44,6 +44,7 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [x] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Figure out how to invoke a request on startup so that the window is created without needing to refresh the `localhost:5000` page
     - [ ] Ensure that the page is actually auto-updating
+- [ ] Add a long-term save feature which pickles(?) the data dictionary at like 7 PM everynight and then loads from that pickle on startup 
 - [ ] Make sure the spanish translations match up
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
 - [ ] Tweak the execution time
