@@ -6,12 +6,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-from config import *
-from datetime import date
-from datetime import timedelta
-from copy import deepcopy
 from main import PATH, DOWNLOAD_PATH, EXECUTABLE_PATH
-
+from config import *
+    
+from datetime import timedelta
+from datetime import date
+from copy import deepcopy
 import pandas as pd
 import math
 import time
@@ -46,6 +46,25 @@ def build_driver():
     cap["marionette"] = True
 
     return webdriver.Firefox(firefox_profile=fp, capabilities=cap, executable_path=EXECUTABLE_PATH)
+
+# Used to delete old Firefox windows if they exist
+def delete_old(driver):
+    driver.current_window_handle
+    handles = list(driver.window_handles)
+    print(f"Handles: {handles}")
+    
+    if len(handles) > 1:
+        for i in range(1, len(handles)):
+            handles.remove(handles[i])
+            print("Removed duplicate window")
+
+    assert len(handles) == 1
+
+    driver.switch_to_window(handles[0])
+    # do your stuffs
+    # driver.close()
+    # driver.switch_to_window(default_handle)
+
 
 def login(driver):
     # Navigate to and login
@@ -83,16 +102,16 @@ def fix_dates(driver):
 # Gets .csv logging missed calls
 def first_bucket(driver, filters, download, apply):
     filters.click()
-    time.sleep(5)
+    time.sleep(1)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[5].click()
     apply.click()
     time.sleep(5)
     download.click()
+    time.sleep(2)
 
-    # clear filters Repeat
-    # driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
+    # clear filters Repeat -- driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
     filters.click()
-    time.sleep(5)
+    time.sleep(1)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[5].click()
     time.sleep(2)
     apply.click()
@@ -102,7 +121,7 @@ def first_bucket(driver, filters, download, apply):
 # Gets .csv logging successful calls
 def second_bucket(driver, filters, download, apply):
     filters.click()
-    time.sleep(5)
+    time.sleep(1)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[2].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[4].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[6].click()
@@ -111,15 +130,15 @@ def second_bucket(driver, filters, download, apply):
     download.click()
     time.sleep(2)
 
-    # clear filters Repeat
-    #driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[23].click()             # For whatever reason the number of clears increases...
+    # clear filters Repeat -- driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[23].click() 
     filters.click()
-    time.sleep(5)
+    time.sleep(1)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[2].click()
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[4].click()
-    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[6].click()
-    time.sleep(5)
+    driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[6].click()    
+    time.sleep(2)
     apply.click()
+    time.sleep(5)
 
 
 # Gets .csv logging follow up calls
@@ -131,14 +150,14 @@ def third_bucket(driver, filters, download, apply):
     time.sleep(5)
     download.click()
 
+    # Clears filters -- driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
     filters.click()
-    time.sleep(5)
+    time.sleep(1)
     driver.find_elements_by_xpath("//*[contains(@ng-click, 'onClickQueueFilter')]")[3].click()
     time.sleep(2)
     apply.click()
     time.sleep(5)
-    # driver.find_elements_by_xpath("//*[contains(text(), 'clear')]")[21].click()
-
+    
 
 def download_files(driver):
     # Instantiate common elements
@@ -158,7 +177,7 @@ def extract_from_csv(data):
         if ".gitkeep" not in filename:
             try:
                 #print(filename)
-                d = pd.read_csv(DOWNLOAD_PATH + str(filename), usecols=["Title of Report"]) # usecols=["Title of Report"], , engine='python')
+                d = pd.read_csv(DOWNLOAD_PATH + str(filename), usecols=["Title of Report"])
                 #print(d['Title of Report'][3], int(d['Title of Report'][5]) )
             except FileNotFoundError:
                 print(f"{filename} was not found, fetching new files")
@@ -180,12 +199,19 @@ def extract_from_csv(data):
             pass
 
 
-def scrape(data, driver, build=False):
-    extract_from_csv(data)
-    clean_up()                          # delete old files if present
+def scrape(data, driver, build=False):    
     if build == True:
+        extract_from_csv(data)
         login(driver)                   # Logs in and navigates to dashboard
         fix_dates(driver)               # sets the daterange to today + tomorrow # TODO may need to be moved
-
+    # else: 
+        # try: 
+        #     driver.close()
+        #     print(driver.window_handles)
+        # except:
+        #     pass  
+    
+    # delete_old(driver)
+    clean_up()                          # delete old files if present
     download_files(driver)              # Downloads the three .csv files
     extract_from_csv(data)              # Extracts relevant fields from the downloaded files

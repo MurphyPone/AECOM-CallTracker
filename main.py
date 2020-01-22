@@ -1,9 +1,11 @@
-from flask import Flask, render_template
-from utils import *
-from datetime import datetime
-import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
+from flask import Flask, render_template
+from datetime import datetime
+from config import *
+from utils import * 
+import atexit
 import os 
+
 app = Flask(__name__)
 
 PATH = os.getcwd()
@@ -33,20 +35,22 @@ data = {
     "coverage": -1
 }
 
-# @app.before_first_request
-# def on_start():
-#     extract_from_csv(data)
-#     global driver
-#     driver = build_driver()         # Builds driver based on config
-#     scrape(data, driver, build=True)
-#     sched = BackgroundScheduler(daemon=True)
-#     cron = sched.add_job(do_scrape, 'interval', minutes=2)
-#     sched.start()
-#     print("Executed start up configurations...")
+@app.before_first_request
+def config_driver():
+    global driver
+    driver = None
+
+    if driver is None:
+        print("Driver undefined")
+        driver = build_driver()                     # Builds driver based on config
+        scrape(data, driver, build=True)
+        print("Executed start up configurations...")
+
 
 def do_scrape():
     print("Executing cron...")
     scrape(data, driver, build=False)
+
 
 @app.route("/")
 def home():
@@ -54,12 +58,10 @@ def home():
 
 
 if __name__ == "__main__":
-    global driver
-    driver = build_driver()         # Builds driver based on config
-    scrape(data, driver, build=True)
     sched = BackgroundScheduler(daemon=True)
     cron = sched.add_job(do_scrape, 'interval', minutes=2)
     sched.start()
-    print("Executed start up configurations...")
-
+    # app.run() will call this script again...?
     app.run(debug=True)
+
+
