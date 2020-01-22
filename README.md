@@ -41,7 +41,9 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [ ] Additional support:
     - [x] Add OSX support
     - [ ] Add Linux support for hosting on an AWS instance
-- [ ] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
+- [x] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
+- [ ] Figure out how to invoke a request on startup so that the window is created without needing to refresh the `localhost:5000` page
+    - [ ] Ensure that the page is actually auto-updating
 - [ ] Make sure the spanish translations match up
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
 - [ ] Tweak the execution time
