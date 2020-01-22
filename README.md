@@ -35,14 +35,14 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [x] Webpage formatting with logos
 - [x] Refresh page when calling global scrape method
   - [x] either use a timer, a `<meta http-equiv="refresh" content="60">` tag, or manual refresh
-- [ ] ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
-- [ ] Make sure the spanish translations match up
 - [x] Add try/Catch statements around each element query
     - [x] Click each previous filter in filter box rather than "clear" button...
     - [x] Parse .csv files by filter tags rather than filename
 - Additional support:
     - [x] Add OSX support
     - [ ] Add Linux support for hosting on an AWS instance
+- [ ] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
+- [ ] Make sure the spanish translations match up
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
 - [ ] Tweak the execution time
 - [ ] Duplicate downloads 
