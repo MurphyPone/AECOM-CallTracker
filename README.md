@@ -17,8 +17,8 @@ Some user-specific information is required to run the script.  Create a file in 
 URL = "https://teamaecompr.mojohelpdesk.com/login"
 USERNAME = "user@email.com"
 PASSWORD = "hunter12"
-DOWNLOAD_PATH = f"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\downloads"
-EXECUTABLE_PATH = r'C:\\Users\\user_name\\path\\to\\AECOM-CallTracker\\geckodriver.exe'
+PATH = f"C:\\Users\\user_name\\path\\to\\AECOM-CallTracker"
+OS = "Windows" # Options include "Windows", "OSX", "Linux"
 ```
 
 Once the config has been filled out, the script can be executed by typing:
@@ -37,12 +37,26 @@ In case one of the elements on the desired page changes location, CSS attribute 
 # TODO
 - [x] Webpage formatting with logos
 - [ ] Refresh page when calling global scrape method
-  - [x] either use a timer, a <meta tag>, or manual refresh
-  - [ ] ensure duplicate windows are not created
+  - [x] either use a timer, a `<meta http-equiv="refresh" content="60">` tag, or manual refresh
+  - [ ] ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Make sure the spanish translations match up
 - [ ] Add try/Catch statements around each element query
 - [ ] Add OSX support
+- [ ] Add Linux support for hosting on an AWS instance
+- [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
 
 # Known Bugs
 - Filter clear button index changes occasionally depending on how many active elements are on screen
+- Per [the geckodriver repo](https://github.com/mozilla/geckodriver/releases):
+    > macOS 10.15 (Catalina):
+    >
+    >Due to the recent requirement from Apple that all programs must
+    be notarized, geckodriver will not work on Catalina if you manually
+    download it through another notarized program, such as Firefox.
+    >
+    >Whilst we are working on a repackaging fix for this problem, you
+    can find more details on how to work around this issue in the
+    macOS notarization section of the documentation.
+
+    but this script _should_ work for older releases of macOS version <= 10.14 (Mojave)
 

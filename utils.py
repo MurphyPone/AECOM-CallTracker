@@ -10,24 +10,28 @@ from config import *
 from datetime import date
 from datetime import timedelta
 from copy import deepcopy
+from main import PATH, DOWNLOAD_PATH, EXECUTABLE_PATH
+
 import pandas as pd
 import math
 import time
 import json
+import sys
 import os
+
 
 # Remove old files if present
 def clean_up():
-    try:
-        os.remove("downloads/Export_dashboard.csv")
-        os.remove("downloads/Export_dashboard(1).csv")
-        os.remove("downloads/Export_dashboard(2).csv")
-    except FileNotFoundError:
-        print("One or more of the files was not found, fetching new files")
+    for filename in os.listdir(DOWNLOAD_PATH):
+        try:
+            os.remove(DOWNLOAD_PATH + str(filename))
+        except FileNotFoundError:
+            print(f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files")
 
 # Configure web driver
 def build_driver():
     print("building driver..")
+
     fp = webdriver.FirefoxProfile()
     fp.set_preference("browser.download.folderList", 2)
     fp.set_preference("browser.download.dir", DOWNLOAD_PATH)
@@ -118,11 +122,11 @@ def download_files(driver):
 
 def extract_from_csv(data):
     print("Extracting data from .csv files...")
-    for filename in os.listdir(DOWNLOAD_PATH):
+    for filename in os.listdir(DOWNLOAD_PATH):        
         try:
-            d = pd.read_csv(DOWNLOAD_PATH+ "/" +str(filename), usecols=['Title of Report'])
+            d = pd.read_csv(DOWNLOAD_PATH + str(filename), usecols=['Title of Report'])
         except FileNotFoundError:
-            print("One or more of the files was not found, fetching new files")
+            print(f"{filename} was not found, fetching new files")
 
         if filename == "Export_dashboard.csv":
             data['missed'] = int(d['Title of Report'][5])
@@ -136,7 +140,7 @@ def extract_from_csv(data):
         if data['total'] == 0:
                 data['coverage'] = 0
         else:
-            data['coverage'] = int((data['successful'] / data['total']) *100)
+            data['coverage'] = int((data['successful'] / data['total']) * 100)
 
 def scrape(data, driver, build=False):
     clean_up()                          # delete old files if present
