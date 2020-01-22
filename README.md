@@ -38,7 +38,7 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [x] Add try/Catch statements around each element query
     - [x] Click each previous filter in filter box rather than "clear" button...
     - [x] Parse .csv files by filter tags rather than filename
-- Additional support:
+- [ ] Additional support:
     - [x] Add OSX support
     - [ ] Add Linux support for hosting on an AWS instance
 - [ ] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
