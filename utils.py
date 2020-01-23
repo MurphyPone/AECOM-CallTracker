@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-from main import PATH, DOWNLOAD_PATH, EXECUTABLE_PATH
+from main import PATH, DOWNLOAD_PATH, EXECUTABLE_PATH, OS
 from config import *
     
 from datetime import timedelta
@@ -45,7 +45,20 @@ def build_driver():
     cap = DesiredCapabilities().FIREFOX
     cap["marionette"] = True
 
-    return webdriver.Firefox(firefox_profile=fp, capabilities=cap, executable_path=EXECUTABLE_PATH)
+    if OS == "Linux":
+        print("building for AWS")
+        from selenium.webdriver.firefox.firefox_binary import FirefoxBinary 
+        from selenium.webdriver.firefox.options import Options
+
+        options = Options()
+        options.headless = True # No display
+        print(PATH+'/drivers/firefox/firefox-bin', PATH+'/drivers/firefox/firefox-bin.log')
+        BINARY = FirefoxBinary(firefox_path=PATH+'/drivers/firefox/firefox-bin', log_file=PATH+'/drivers/firefox/firefox-bin.log')
+        # binary = FirefoxBinary(PATH+'/drivers/firefox/firefox')    # probably needs to be custom configured
+        return webdriver.Firefox(firefox_profile=fp, firefox_binary=BINARY, options=options, capabilities=cap, executable_path=EXECUTABLE_PATH)
+   
+    else: 
+        return webdriver.Firefox(firefox_profile=fp, capabilities=cap, executable_path=EXECUTABLE_PATH)
 
 # Used to delete old Firefox windows if they exist
 def delete_old(driver):

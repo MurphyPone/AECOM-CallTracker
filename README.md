@@ -9,6 +9,8 @@ Required modules for this project can be installed by running the following comm
 
 FireFox is also necessary to execute this project.  The WebDrivers associated with the version of this project are included in this repository as under `drivers/geckodriver...`
 
+Additional installation steps are necessary for this project to run in an AWS EC2 instace, see the section labled **AWS EC2 Installation** for more information
+
 # Use
 Some user-specific information is required to run the script.  Create a file in the root directory of this folder called `config.py` and include the fields below
 
@@ -49,6 +51,7 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
 - [ ] Tweak the execution time
 - [ ] Duplicate downloads 
+- [ ] Must refresh before cron executes otherwise it will try to scrape with no driver
 
 # Known Bugs
 - Filter clear button index changes occasionally depending on how many active elements are on screen
@@ -64,4 +67,19 @@ In case one of the elements on the desired page changes location, CSS attribute 
     macOS notarization section of the documentation.
 
     but this script _should_ work for older releases of macOS version <= 10.14 (Mojave)
+
+# AWS EC2 Installation
+1. Connect to the EC2 instance:
+    - Generate a new key-pair or request access to the private key for secure shh access by filing an issue on this repo
+    - Modify the local permissions of the file via `sudo chmod 400 private_key.pem`
+    - Execute the command `ssh -i private_key.pem ec2-user@ec2-3-134-98-107.us-east-2.compute.amazonaws.com` 
+        - Note that the Public (IPv4) DNS address –the portion following the `@` in the above command, may be different 
+2. Install git on the container if it is not already: `sudo yum update -y`
+3. Install Python 3.7.1 as well as it's dependencies following [this tutorial](https://tecadmin.net/install-python-3-7-amazon-linux/) 
+    - Note that unless aliased in the `~/.bashrc` or `~/.bash_profile`, the command `python` will invoke version 2.7.x.  Instead we will use the command `python3.7` to explicitly specify which version of python we want to use
+    - Further note that you can verify your python installation with `sudo python3.7 -V`.  **It is important to make sure that Python 3.7 is installed as root because we need to call the script as root in order to serve the Flask webpage to port 80.
+4. This is a hacky workaround for using Python 3.7 as root which specifies which version to use and tempporarily appends it to the root path (which is different than the ec2-user's path): `sudo env "PATH=$PATH" /usr/local/bin/pip3.7 install --user -r requirements.txt`, similarly we can specify Python 3.7 with: `sudo env "PATH=$PATH" /usr/local/bin/python3.7 main.py`
+5. Install `lszma` for pandas: yum install -y xz-devel
+6. Instal GTK+ to our Firefox installation as it is not enabled by default by following [this article](https://joekiller.com/2012/06/03/install-firefox-on-amazon-linux-x86_64-compiling-gtk/)
+7. Finally, we can execute the script using the workaround mentioned above: `sudo env "PATH=$PATH" python3.7 main.py` 
 

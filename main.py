@@ -20,8 +20,9 @@ elif OS == "OSX":
     EXECUTABLE_PATH =  PATH + r"/drivers/geckodriver"
     DOWNLOAD_PATH   = f"{PATH}/downloads/"
 elif OS == "Linux":
-    print("Linux is not yet supported")
-    sys.exit(1)
+    EXECUTABLE_PATH =  PATH + r"/drivers/geckodriver_linux"
+    DOWNLOAD_PATH   = f"{PATH}/downloads/"
+
 
 # print(f"PATH:\t\t\t{PATH}")
 # print(f"DOWNLOAD_PATH:\t\t{DOWNLOAD_PATH}")
@@ -62,6 +63,6 @@ if __name__ == "__main__":
     cron = sched.add_job(do_scrape, 'interval', minutes=2)
     sched.start()
     # app.run() will call this script again...?
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
 
 

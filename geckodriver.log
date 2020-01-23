@@ -10847,3 +10847,39 @@ Exiting due to channel error.
 [GFX1-]: Receive IPC close with reason=AbnormalShutdown
 Exiting due to channel error.
 Exiting due to channel error.
+1579755201500	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilez2LKxE"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579755210022	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileK1v64Z"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579755339496	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilePV3i47"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579755638454	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilehTnN6i"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579755749421	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileLMTKo8"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579789453860	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileZ5RX17"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579789554198	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox-bin" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0crGxt"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579793175157	mozrunner::runner	INFO	Running command: "/home/ec2-user/AECOM-CallTracker/drivers/firefox/firefox-bin" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiledTiLZK"
+XPCOMGlueLoad error for file /home/ec2-user/AECOM-CallTracker/drivers/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
+1579793211353	mozrunner::runner	INFO	Running command: "/usr/local/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileg2sqm5"
+XPCOMGlueLoad error for file /usr/local/firefox/libmozgtk.so:
+libgtk-3.so.0: cannot open shared object file: No such file or directory
+Couldn't load XPCOM.
