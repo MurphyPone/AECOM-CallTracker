@@ -10883,3 +10883,91 @@ Couldn't load XPCOM.
 XPCOMGlueLoad error for file /usr/local/firefox/libmozgtk.so:
 libgtk-3.so.0: cannot open shared object file: No such file or directory
 Couldn't load XPCOM.
+1579800514033	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiledRDLgJ"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579800565993	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile7BjfgY"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579800568878	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileZLIRrR"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579800713156	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4457Em"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579800787303	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile9wt56F"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579800791222	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMnikvf"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579801077418	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGfkoa2"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579802022107	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileVXVJP1"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803103276	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepJigF3"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803139695	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileF1pVbM"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803287933	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileiCdwBG"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803289512	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileHiOOXf"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803291883	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileVNswe5"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803380404	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileV94HWx"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803438425	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilec0wiX3"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579803847285	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletbppTx"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804203165	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileArhk4z"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804283685	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileOvAr9V"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804314755	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMX2gtS"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804317205	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilelzvIrg"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804318328	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileC1N43l"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804319451	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileaWNX9Y"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804319576	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenXR14E"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579804334629	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilemKbINo"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579809716399	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilengEs6m"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579809774847	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileb6g5vT"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579809802516	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileQWP0of"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579809986190	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileZ5JELR"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579810507714	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilevlJX7b"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579810508835	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileUIBpP2"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579810510213	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileyW1OZl"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579810514974	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileADVDmZ"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579810838066	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileT5KdYz"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579811337232	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1DhLw0"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579811845204	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileTaKtRo"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579812376722	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiler4QoB7"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579813600910	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile8natF5"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579813652198	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile990s31"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579814249494	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGmXxVF"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579814250722	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileksdzUi"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579814536435	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesCw4a0"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579815192174	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5UCKhH"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579815299118	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGbwHpN"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)
+1579816933438	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "--headless" "--no-sandbox" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilejaSwCE"
+Running Firefox as root in a regular user's session is not supported.  ($HOME is /home/ubuntu which is owned by ubuntu.)

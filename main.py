@@ -23,11 +23,6 @@ elif OS == "Linux":
     EXECUTABLE_PATH =  PATH + r"/drivers/geckodriver_linux"
     DOWNLOAD_PATH   = f"{PATH}/downloads/"
 
-
-# print(f"PATH:\t\t\t{PATH}")
-# print(f"DOWNLOAD_PATH:\t\t{DOWNLOAD_PATH}")
-# print(f"EXECUTABLE_PATH:\t{EXECUTABLE_PATH}")
-
 data = {
     "total": 0,
     "successful": 0,
@@ -42,7 +37,7 @@ def config_driver():
     driver = None
 
     if driver is None:
-        print("Driver undefined")
+        print("Driver undefined...")
         driver = build_driver()                     # Builds driver based on config
         scrape(data, driver, build=True)
         print("Executed start up configurations...")
@@ -57,12 +52,12 @@ def do_scrape():
 def home():
     return render_template("home.html", data=data)
 
-
 if __name__ == "__main__":
     sched = BackgroundScheduler(daemon=True)
     cron = sched.add_job(do_scrape, 'interval', minutes=2)
     sched.start()
     # app.run() will call this script again...?
     app.run(host="0.0.0.0", port=80, debug=True)
+
 
 

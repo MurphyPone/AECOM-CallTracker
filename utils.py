@@ -48,14 +48,12 @@ def build_driver():
     if OS == "Linux":
         print("building for AWS")
         from selenium.webdriver.firefox.firefox_binary import FirefoxBinary 
-        from selenium.webdriver.firefox.options import Options
+        from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-        options = Options()
-        options.headless = True # No display
-        print(PATH+'/drivers/firefox/firefox-bin', PATH+'/drivers/firefox/firefox-bin.log')
-        BINARY = FirefoxBinary(firefox_path=PATH+'/drivers/firefox/firefox-bin', log_file=PATH+'/drivers/firefox/firefox-bin.log')
-        # binary = FirefoxBinary(PATH+'/drivers/firefox/firefox')    # probably needs to be custom configured
-        return webdriver.Firefox(firefox_profile=fp, firefox_binary=BINARY, options=options, capabilities=cap, executable_path=EXECUTABLE_PATH)
+        options = FirefoxOptions()
+        options.add_argument("--headless")
+        options.add_argument('--no-sandbox')
+        return webdriver.Firefox(firefox_profile=fp, options=options, capabilities=cap, executable_path=EXECUTABLE_PATH)
    
     else: 
         return webdriver.Firefox(firefox_profile=fp, capabilities=cap, executable_path=EXECUTABLE_PATH)
@@ -74,9 +72,6 @@ def delete_old(driver):
     assert len(handles) == 1
 
     driver.switch_to_window(handles[0])
-    # do your stuffs
-    # driver.close()
-    # driver.switch_to_window(default_handle)
 
 
 def login(driver):
