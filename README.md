@@ -73,14 +73,14 @@ In case one of the elements on the desired page changes location, CSS attribute 
     - Generate a new key-pair or request access to the private key for secure shh access by filing an issue on this repo
     - Modify the local permissions of the file via `sudo chmod 400 private_key.pem`
     - Execute the command `ssh -i private_key.pem ec2-user@ec2-3-134-98-107.us-east-2.compute.amazonaws.com` 
-        - Note that the Public (IPv4) DNS address –the portion following the `@` in the above command, may be different 
-2. Install git on the container if it is not already: `sudo yum update -y`
+        - Note that the Public (IPv4) DNS address (the portion following the `@` in the above command), may be different 
+2. Install git on the container if it is not already: `sudo yum update -y`, `sudo yum install git`
 3. Install Python 3.7.1 as well as it's dependencies following [this tutorial](https://tecadmin.net/install-python-3-7-amazon-linux/) 
-    - Note that unless aliased in the `~/.bashrc` or `~/.bash_profile`, the command `python` will invoke version 2.7.x.  Instead we will use the command `python3.7` to explicitly specify which version of python we want to use
+    - Note that unless aliased in the `~/.bashrc` or `~/.bash_profile`, the command `python` will invoke version 2.7.x.  Instead we will use the command `python3.7` to explicitly specify which version we want to use
     - Further note that you can verify your python installation with `sudo python3.7 -V`.  **It is important to make sure that Python 3.7 is installed as root because we need to call the script as root in order to serve the Flask webpage to port 80.
-4. This is a hacky workaround for using Python 3.7 as root which specifies which version to use and tempporarily appends it to the root path (which is different than the ec2-user's path): `sudo env "PATH=$PATH" /usr/local/bin/pip3.7 install --user -r requirements.txt`, similarly we can specify Python 3.7 with: `sudo env "PATH=$PATH" /usr/local/bin/python3.7 main.py`
+4. This is a hacky workaround for using Python 3.7 as root which specifies which version to use and temporarily appends it to the root path (which is different than the ec2-user's path): `sudo env "PATH=$PATH" /usr/local/bin/pip3.7 install --user -r requirements.txt`, similarly we can specify Python 3.7 with: `sudo env "PATH=$PATH" /usr/local/bin/python3.7 main.py`
 5. Install `lszma` for pandas: `yum install -y xz-devel`
-    - Also fixed issues on Ubuntu where _bz2 was not found.  Resolved by manually downloading bzip-2, reconfiguring and recompiling python
+    - Also fixed issues on Ubuntu where _bz2 was not found. Resolved by manually downloading bzip-2, reconfiguring and recompiling python
 6. ONLY FOR AMI Install GTK+ to our Firefox installation as it is not enabled by default by following [this article](https://joekiller.com/2012/06/03/install-firefox-on-amazon-linux-x86_64-compiling-gtk/)
     - Alternatively on Ubuntu, use: `sudo apt-get install dbus-x11` and `sudo apt install xvfb` for a virtual frame buffer
         - To use the Xvfb: `export DISPLAY=:10 && sudo Xvfb :10 -screen scrn 1200x800x24 &` 
