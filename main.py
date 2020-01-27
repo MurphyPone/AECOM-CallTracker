@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from datetime import datetime
 from config import *
 from utils import * 
+from buffer import * 
 import atexit
 import os 
 
@@ -24,12 +25,16 @@ elif OS == "Linux":
     DOWNLOAD_PATH   = f"{PATH}/downloads/"
 
 data = {
+    "date": "2020-01-27",
     "total": 0,
     "successful": 0,
     "missed": 0,
     "follow_up": 0,
     "coverage": -1
 }
+
+buffer = Buffer()
+buffer.load("Monthly Report.csv") 
 
 @app.before_first_request
 def config_driver():
@@ -39,13 +44,13 @@ def config_driver():
     if driver is None:
         print("Driver undefined...")
         driver = build_driver()                     # Builds driver based on config
-        scrape(data, driver, build=True)
+        scrape(data, driver, buffer, build=True)
         print("Executed start up configurations...")
 
 
 def do_scrape():
     print("Executing cron...")
-    scrape(data, driver, build=False)
+    scrape(data, driver, buffer, build=False)
 
 
 @app.route("/")
@@ -61,6 +66,4 @@ if __name__ == "__main__":
         app.run(host="0.0.0.0", port=5000, debug=True)
     else: 
         app.run(host="0.0.0.0", port=80, debug=True)
-
-
 

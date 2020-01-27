@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from main import PATH, DOWNLOAD_PATH, EXECUTABLE_PATH, OS
+from buffer import *
 from config import *
     
 from datetime import timedelta
@@ -198,6 +199,7 @@ def extract_from_csv(data):
                 data['follow_up'] = int(d['Title of Report'][5])
 
             data['total'] = data['missed'] + data['successful']
+            data['date'] = d['Title of Report'][0]
 
             if data['total'] == 0:
                     data['coverage'] = 0
@@ -207,7 +209,7 @@ def extract_from_csv(data):
             pass
 
 
-def scrape(data, driver, build=False):    
+def scrape(data, driver, buffer, build=False):    
     if build == True:
         extract_from_csv(data)
         login(driver)                   # Logs in and navigates to dashboard
@@ -223,3 +225,5 @@ def scrape(data, driver, build=False):
     clean_up()                          # delete old files if present
     download_files(driver)              # Downloads the three .csv files
     extract_from_csv(data)              # Extracts relevant fields from the downloaded files
+    buffer.store(data)                  # Updates the buffer 
+    buffer.save()
