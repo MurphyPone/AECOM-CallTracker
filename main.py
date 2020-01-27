@@ -57,7 +57,10 @@ if __name__ == "__main__":
     cron = sched.add_job(do_scrape, 'interval', minutes=2)
     sched.start()
     # app.run() will call this script again...?
-    app.run(host="0.0.0.0", port=80, debug=True)
+    if OS == "Windows" or "OSX":
+        app.run(host="0.0.0.0", port=5000, debug=True)
+    else: 
+        app.run(host="0.0.0.0", port=80, debug=True)
 
 
 
