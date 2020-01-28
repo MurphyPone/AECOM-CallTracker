@@ -21,8 +21,8 @@ class Buffer():
             top = self.buffer.pop()
             if top['date'] == data['date']:    # Replace if same day
                 self.buffer.append(data)
-            else:                           # Stack if new day
-                self.buffer.append(top)
+            else:                               # Stack if new day
+                self.buffer.append(top)         # TODO this is broken atm
                 self.buffer.append(data)
         else: 
             self.buffer.append(data) 
