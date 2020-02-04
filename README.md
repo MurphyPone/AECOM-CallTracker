@@ -42,7 +42,9 @@ In case one of the elements on the desired page changes location, CSS attribute 
     - [x] Parse .csv files by filter tags rather than filename
 - [ ] Additional support:
     - [x] Add OSX support
-    - [ ] Add Linux support for hosting on an AWS instance
+    - [x] Add Linux support for hosting on an AWS instance
+- [ ] Localize images
+- [ ] rollover totals by new day
 - [x] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Figure out how to invoke a request on startup so that the window is created without needing to refresh the `localhost:5000` page
     - [x] Ensure that the page is actually auto-updating
