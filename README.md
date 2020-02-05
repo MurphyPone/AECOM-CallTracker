@@ -43,7 +43,8 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [ ] Additional support:
     - [x] Add OSX support
     - [x] Add Linux support for hosting on an AWS instance
-- [ ] Localize images
+- [x] Localize images
+- Change monthly report to ./static/
 - [ ] rollover totals by new day
 - [x] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Figure out how to invoke a request on startup so that the window is created without needing to refresh the `localhost:5000` page

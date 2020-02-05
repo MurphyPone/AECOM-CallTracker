@@ -50,7 +50,7 @@ class Buffer():
     
         # Creates pandas DataFrame. 
         df = pd.DataFrame(data, index=dates) 
-        df.to_csv("Monthly Report.csv", sep=',')
+        df.to_csv("./static/Monthly Report.csv", sep=',')
         print("Logging to the buffer...")
 
 

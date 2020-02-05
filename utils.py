@@ -202,7 +202,7 @@ def extract_from_csv(data):
             data['date'] = d['Title of Report'][0]
 
             if data['total'] == 0:
-                    data['coverage'] = 0
+                    data['coverage'] = 100
             else:
                 data['coverage'] = int(data['successful'] / data['total'] * 10000)/100 # two decimal places
         else: 
@@ -213,7 +213,7 @@ def scrape(data, driver, buffer, build=False):
     if build == True:
         extract_from_csv(data)
         login(driver)                   # Logs in and navigates to dashboard
-        fix_dates(driver)               # sets the daterange to today + tomorrow # TODO may need to be moved
+        fix_dates(driver)               # Sets the daterange to today + tomorrow # TODO may need to be moved
     # else: 
         # try: 
         #     driver.close()
@@ -222,6 +222,17 @@ def scrape(data, driver, buffer, build=False):
         #     pass  
     
     # delete_old(driver)
+
+    # daily reset at midnight
+    print(time.strftime("%H", time.localtime()))
+    if time.strftime("%H", time.localtime()) == '00' and int(time.strftime("%M", time.localtime())) < 15:
+        print("Daily reset...")
+        data["total"] = 0       
+        data["successful"] = 0       
+        data["missed"] = 0       
+        data["follow-up"] = 0  
+        data["coverage"] = 100
+
     clean_up()                          # delete old files if present
     download_files(driver)              # Downloads the three .csv files
     extract_from_csv(data)              # Extracts relevant fields from the downloaded files

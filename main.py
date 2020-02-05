@@ -34,7 +34,7 @@ data = {
 }
 
 buffer = Buffer()
-buffer.load("Monthly Report.csv") 
+buffer.load("./static/Monthly Report.csv") 
 
 @app.before_first_request
 def config_driver():
@@ -52,7 +52,6 @@ def do_scrape():
     print("Executing cron...")
     scrape(data, driver, buffer, build=False)
 
-
 @app.route("/")
 def home():
     return render_template("home.html", data=data)
@@ -61,6 +60,7 @@ if __name__ == "__main__":
     sched = BackgroundScheduler(daemon=True)
     cron = sched.add_job(do_scrape, 'interval', minutes=2)
     sched.start()
+    
     # app.run() will call this script again...?
     if OS == "Windows" or "OSX":
         app.run(host="0.0.0.0", port=5000, debug=True)
