@@ -204,7 +204,7 @@ def extract_from_csv(data):
             if data['total'] == 0:
                     data['coverage'] = 0
             else:
-                data['coverage'] = int((data['successful'] / data['total']) * 100)
+                data['coverage'] = int(data['successful'] / data['total'] * 10000)/100 # two decimal places
         else: 
             pass
 
