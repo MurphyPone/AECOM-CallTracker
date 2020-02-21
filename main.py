@@ -33,6 +33,7 @@ data = {
     "coverage": -1
 }
 
+# Instantiate and load buffer from file
 buffer = Buffer()
 buffer.load("./static/Monthly Report.csv") 
 

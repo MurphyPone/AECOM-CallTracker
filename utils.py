@@ -59,7 +59,7 @@ def build_driver():
     else: 
         return webdriver.Firefox(firefox_profile=fp, capabilities=cap, executable_path=EXECUTABLE_PATH)
 
-# Used to delete old Firefox windows if they exist
+# Used to delete old Firefox windows if they exist TODO determine if this is still even needed
 def delete_old(driver):
     driver.current_window_handle
     handles = list(driver.window_handles)
@@ -213,7 +213,7 @@ def scrape(data, driver, buffer, build=False):
     if build == True:
         extract_from_csv(data)
         login(driver)                   # Logs in and navigates to dashboard
-        fix_dates(driver)               # Sets the daterange to today + tomorrow # TODO may need to be moved
+        fix_dates(driver)               # Sets the daterange to today + tomorrow
     # else: 
         # try: 
         #     driver.close()
@@ -221,11 +221,11 @@ def scrape(data, driver, buffer, build=False):
         # except:
         #     pass  
     
-    # delete_old(driver)
+    delete_old(driver)
 
-    # daily reset at midnight
-    print(time.strftime("%H", time.localtime()))
-    if time.strftime("%H", time.localtime()) == '00' and int(time.strftime("%M", time.localtime())) < 15:
+    # Daily reset at midnight
+    if time.strftime("%H", time.localtime()) == '00': #and int(time.strftime("%M", time.localtime())) < 15:
+        print(time.strftime("Time: %H", time.localtime()))
         print("Daily reset...")
         data["total"] = 0       
         data["successful"] = 0       
@@ -237,4 +237,4 @@ def scrape(data, driver, buffer, build=False):
     download_files(driver)              # Downloads the three .csv files
     extract_from_csv(data)              # Extracts relevant fields from the downloaded files
     buffer.store(data)                  # Updates the buffer 
-    buffer.save()
+    buffer.save()                   

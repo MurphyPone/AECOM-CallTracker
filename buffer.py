@@ -9,17 +9,19 @@ class Buffer():
     def __init__(self, size=30):        
         self.buffer = deque(maxlen=int(size))       # extends list which can be sampled from 
         self.maxSize = size 
-        self.len = 0
+        self.length = 0
 
 
     def len(self):
-        return self.len 
+        return self.length 
 
 
     def store(self, data):
-        if self.len > 0:
+        if self.length > 0:
             top = self.buffer.pop()
+            # print(f"top['date']: {top['date']}, data['date']: {data['date']}")
             if top['date'] == data['date']:    # Replace if same day
+                print("Updating buffer with today's latest data...")
                 self.buffer.append(data)
             else:                               # Stack if new day
                 self.buffer.append(top)         # TODO this is broken atm
@@ -27,7 +29,7 @@ class Buffer():
         else: 
             self.buffer.append(data) 
 
-        self.len += 1
+        self.length += 1
 
 
     def save(self):
@@ -51,13 +53,13 @@ class Buffer():
         # Creates pandas DataFrame. 
         df = pd.DataFrame(data, index=dates) 
         df.to_csv("./static/Monthly Report.csv", sep=',')
-        print("Logging to the buffer...")
+        print("Saving to the buffer...")
 
 
 
     def load(self, filename):
         try:
-            print("Loading to the buffer...")
+            print("Loading from the buffer...")
             d = pd.read_csv(str(filename))
             for index, row in d.iterrows():
                 entry = { "date": "", "total": 0, "successful": 0, "missed": 0, "follow_up": 0, "coverage": -1 }
