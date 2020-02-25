@@ -237,4 +237,4 @@ def scrape(data, driver, buffer, build=False):
     download_files(driver)              # Downloads the three .csv files
     extract_from_csv(data)              # Extracts relevant fields from the downloaded files
     buffer.store(data)                  # Updates the buffer 
-    buffer.save()                   
+    buffer.save()                       # This isn't being called properly

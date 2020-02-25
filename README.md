@@ -72,6 +72,21 @@ In case one of the elements on the desired page changes location, CSS attribute 
 
     but this script _should_ work for older releases of macOS version <= 10.14 (Mojave)
 
+- Issue where a `driver` is not defined (I think the issue is better colloquially described as _not found_).  Issue is resolved by removing duplicate windows & drivers, inidicated by `Handles: ['17']` where `Handles` is the list of active windows (and implicitly associated drivers), the length of the list is consistently 1, fixing the issue thrown directly prior:
+
+    ```
+    Job "do_scrape (trigger: interval[0:02:00], next run at: 2020-02-25 14:27:58 EST)" raised an exception
+    Traceback (most recent call last):
+        File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/apscheduler/executors/base.py", line 125, in run_job
+            retval = job.func(*job.args, **job.kwargs)
+        File "main.py", line 54, in do_scrape
+            scrape(data, driver, buffer, build=False)
+    NameError: name 'driver' is not defined
+    Executing cron...
+    Handles: ['17']
+    ```
+
+
 # AWS EC2 Installation
 1. Connect to the EC2 instance:
     - Generate a new key-pair or request access to the private key for secure shh access by filing an issue on this repo
