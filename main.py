@@ -13,6 +13,11 @@ PATH = os.getcwd()
 DOWNLOAD_PATH = PATH
 EXECUTABLE_PATH = PATH
 
+
+with open("./static/logs.txt", "a") as file: 
+    print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Initiating driver"))
+    file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Initiating driver\n"))
+
 # Expand config based on OSwhich executable to build with
 if OS == "Windows":
     EXECUTABLE_PATH = PATH + r"\drivers\geckodriver.exe"
@@ -43,19 +48,34 @@ def config_driver():
     driver = None
 
     if driver is None:
-        print("Driver undefined...")
+        with open("./static/logs.txt", "a") as file: 
+            print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Driver undefined"))
+            file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Driver undefined\n"))
+
         driver = build_driver()                     # Builds driver based on config
         scrape(data, driver, buffer, build=True)
-        print("Executed start up configurations...")
+        with open("./static/logs.txt", "a") as file: 
+            print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Executed start up configurations..."))
+            file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Executed start up configurations...\n"))
 
 
 def do_scrape():
-    print("Executing cron...")
+    with open("./static/logs.txt", "a") as file: 
+        print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Executing cron..."))
+        file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Executing cron...\n"))
+
     scrape(data, driver, buffer, build=False)
 
 @app.route("/")
 def home():
     return render_template("home.html", data=data)
+
+def exit_handler():
+    with open("./static/logs.txt", "a") as file: 
+        print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Closing/restarting"))
+        file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Closing/restarting...\n"))
+
+atexit.register(exit_handler)
 
 if __name__ == "__main__":
     sched = BackgroundScheduler(daemon=True)

@@ -65,5 +65,5 @@ driver.find_element(By.CSS_SELECTOR, "#ext-gen1153").click()
 driver.find_element_by_xpath("//*[contains(text(), 'Show Records')]").click()  # Click show records to reveal download
 time.sleep(3)
 driver.find_element_by_xpath("//*[contains(text(), 'Download')]").click()  # Click download
-print("downloading...")
+print("downloading...\n")
 time.sleep(30)

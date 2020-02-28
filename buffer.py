@@ -1,7 +1,12 @@
 from collections import deque
 import pandas as pd
 import time
+from datetime import timedelta, date, datetime
 import random as random
+import json
+
+def get_time():
+    return datetime.fromtimestamp(time.time())
 
 class Buffer():
     """Key = date, value = tuple (successful, missed, total, follow up, coverage)"""
@@ -21,7 +26,10 @@ class Buffer():
             top = self.buffer.pop()
             # print(f"top['date']: {top['date']}, data['date']: {data['date']}")
             if top['date'] == data['date']:    # Replace if same day
-                print("Updating buffer with today's latest data...")
+                with open("./static/logs.txt", "a") as file:
+                    print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Updating buffer with today's latest data:\n\t" + json.dumps(top)))
+                    file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Updating buffer with today's latest data...\n\t" + json.dumps(top) + "\n"))
+
                 self.buffer.append(data)
             else:                               # Stack if new day
                 self.buffer.append(top)         # TODO this is broken atm
@@ -53,13 +61,17 @@ class Buffer():
         # Creates pandas DataFrame. 
         df = pd.DataFrame(data, index=dates) 
         df.to_csv("./static/Monthly Report.csv", sep=',')
-        print("Saving to the buffer...")
-
-
+        
+        with open("./static/logs.txt", "a") as file:
+            print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Saving to the buffer..."))
+            file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Saving to the buffer...\n"))
 
     def load(self, filename):
         try:
-            print("Loading from the buffer...")
+            with open("./static/logs.txt", "a") as file:
+                print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Loading from the buffer..."))
+                file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Loading from the buffer...\n"))
+
             d = pd.read_csv(str(filename))
             for index, row in d.iterrows():
                 entry = { "date": "", "total": 0, "successful": 0, "missed": 0, "follow_up": 0, "coverage": -1 }
@@ -71,4 +83,6 @@ class Buffer():
                 entry['coverage'] = row[4]
                 self.buffer.append(entry)
         except FileNotFoundError:
-            print(f"{filename} was not found, building a new buffer...")
+            with open("./static/logs.txt", "a") as file:
+                print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{filename} was not found, building a new buffer..."))
+                file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{filename} was not found, building a new buffer...\n"))

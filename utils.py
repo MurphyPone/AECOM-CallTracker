@@ -10,8 +10,7 @@ from main import PATH, DOWNLOAD_PATH, EXECUTABLE_PATH, OS
 from buffer import *
 from config import *
     
-from datetime import timedelta
-from datetime import date
+from datetime import timedelta, date, datetime
 from copy import deepcopy
 import pandas as pd
 import math
@@ -28,14 +27,19 @@ def clean_up():
             try:
                 os.remove(DOWNLOAD_PATH + str(filename))
             except FileNotFoundError:
-                print(f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files")
+                # print(f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files")
+                with open("./static/logs.txt", "a") as file: 
+                    print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files"))
+                    file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{DOWNLOAD_PATH + str(filename)} was not found, fetching new files"))
         else: 
             pass
 
 
 # Configure web driver
 def build_driver():
-    print("building driver..")
+    with open("./static/logs.txt", "a") as file: 
+        print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Building driver..."))
+        file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Building driver...\n"))
 
     fp = webdriver.FirefoxProfile()
     fp.set_preference("browser.download.folderList", 2)
@@ -47,7 +51,10 @@ def build_driver():
     cap["marionette"] = True
 
     if OS == "Linux":
-        print("building for AWS")
+        with open("./static/logs.txt", "a") as file: 
+            print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Building for AWS"))
+            file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Building for AWS"))
+
         from selenium.webdriver.firefox.firefox_binary import FirefoxBinary 
         from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
@@ -63,12 +70,19 @@ def build_driver():
 def delete_old(driver):
     driver.current_window_handle
     handles = list(driver.window_handles)
-    print(f"Handles: {handles}")
+
+    with open("./static/logs.txt", "a") as file: 
+        print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"Handles: {handles}"))
+        file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"Handles: {handles}\n"))
+
     
     if len(handles) > 1:
         for i in range(1, len(handles)):
             handles.remove(handles[i])
-            print("Removed duplicate window")
+        
+            with open("./static/logs.txt", "a") as file: 
+                print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Removed duplicate window"))
+                file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Removed duplicate window"))
 
     assert len(handles) == 1
 
@@ -181,7 +195,10 @@ def download_files(driver):
 
 
 def extract_from_csv(data):
-    print("Extracting data from .csv files...")
+    with open("./static/logs.txt", "a") as file: 
+        print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Extracting data from .csv files..."))
+        file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Extracting data from .csv files...\n"))
+
     for filename in os.listdir(DOWNLOAD_PATH):    
         if ".gitkeep" not in filename:
             try:
@@ -189,7 +206,9 @@ def extract_from_csv(data):
                 d = pd.read_csv(DOWNLOAD_PATH + str(filename), usecols=["Title of Report"])
                 #print(d['Title of Report'][3], int(d['Title of Report'][5]) )
             except FileNotFoundError:
-                print(f"{filename} was not found, fetching new files")
+                with open("./static/logs.txt", "a") as file: 
+                    print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{filename} was not found, fetching new files..."))
+                    file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{filename} was not found, fetching new files..\n"))
 
             if d['Title of Report'][3] == "Missed Call_m":
                 data['missed'] = int(d['Title of Report'][5])
@@ -225,8 +244,10 @@ def scrape(data, driver, buffer, build=False):
 
     # Daily reset at midnight
     if time.strftime("%H", time.localtime()) == '00': #and int(time.strftime("%M", time.localtime())) < 15:
-        print(time.strftime("Time: %H", time.localtime()))
-        print("Daily reset...")
+        with open("./static/logs.txt", "a") as file: 
+            print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Daily reset..."))
+            file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Daily reset...\n"))
+
         data["total"] = 0       
         data["successful"] = 0       
         data["missed"] = 0       
@@ -238,3 +259,4 @@ def scrape(data, driver, buffer, build=False):
     extract_from_csv(data)              # Extracts relevant fields from the downloaded files
     buffer.store(data)                  # Updates the buffer 
     buffer.save()                       # This isn't being called properly
+

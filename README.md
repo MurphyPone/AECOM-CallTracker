@@ -40,22 +40,23 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [x] Add try/Catch statements around each element query
     - [x] Click each previous filter in filter box rather than "clear" button...
     - [x] Parse .csv files by filter tags rather than filename
-- [ ] Additional support:
+- [X] Additional support:
     - [x] Add OSX support
     - [x] Add Linux support for hosting on an AWS instance
 - [x] Localize images
-- Change monthly report to ./static/
+- [x] Change monthly report to ./static/
 - [ ] rollover totals by new day
+    - [x] Add verbose logging to troubleshoot issues with daily rollovers
 - [x] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Figure out how to invoke a request on startup so that the window is created without needing to refresh the `localhost:5000` page
     - [x] Ensure that the page is actually auto-updating
-- [ ] Track month long data in a csv matrix with day columns and row value
-    - [ ] Use a buffer dequeue buffer of len(30) that saves each update
-- [ ] Make sure the spanish translations match up
+- [x] Track month long data in a csv matrix with day columns and row value
+    - [x] Use a buffer dequeue buffer of len(30) that saves each update
+- [x] Make sure the spanish translations match up
 - [ ] Resolve `selenium.common.exceptions.WebDriverException: Message: Failed to decode response from marionette` 
-- [ ] Tweak the execution time
-- [ ] Duplicate downloads 
-- [ ] Must refresh before cron executes otherwise it will try to scrape with no driver
+- [x] Tweak the execution time
+- [x] Duplicate downloads 
+- [x] Must refresh before cron executes otherwise it will try to scrape with no driver
 
 # Known Bugs
 - Filter clear button index changes occasionally depending on how many active elements are on screen
