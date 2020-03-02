@@ -82,6 +82,7 @@ class Buffer():
                 entry['follow_up'] = row[4]
                 entry['coverage'] = row[4]
                 self.buffer.append(entry)
+                
         except FileNotFoundError:
             with open("./static/logs.txt", "a") as file:
                 print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- " + f"{filename} was not found, building a new buffer..."))

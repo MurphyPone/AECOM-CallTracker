@@ -248,11 +248,14 @@ def scrape(data, driver, buffer, build=False):
             print(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Daily reset..."))
             file.write(get_time().strftime("[%Y-%m-%d %H:%M:%S] --- Daily reset...\n"))
 
+        # data["date"] here is different from the initial format that gets extracted from the .csv 
+        data["date"] = get_time().strftime("%Y-%m-%d")      
         data["total"] = 0       
         data["successful"] = 0       
         data["missed"] = 0       
-        data["follow-up"] = 0  
+        data["follow_up"] = 0  
         data["coverage"] = 100
+        
 
     clean_up()                          # delete old files if present
     download_files(driver)              # Downloads the three .csv files
