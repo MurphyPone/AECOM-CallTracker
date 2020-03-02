@@ -47,6 +47,8 @@ In case one of the elements on the desired page changes location, CSS attribute 
 - [x] Change monthly report to ./static/
 - [ ] rollover totals by new day
     - [x] Add verbose logging to troubleshoot issues with daily rollovers
+    - [x] Ensure the date is fetched on daily reset
+    - [ ] Investigate time zone differences, thinks it's 10:55 PM when it was really 5:55 PM. 
 - [x] Ensure duplicate windows are not created -- suspect that `app.run(debug=True)` in `main.py` is source of issue
 - [ ] Figure out how to invoke a request on startup so that the window is created without needing to refresh the `localhost:5000` page
     - [x] Ensure that the page is actually auto-updating
