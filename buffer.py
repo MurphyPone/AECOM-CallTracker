@@ -80,7 +80,7 @@ class Buffer():
                 entry['successful'] = row[2] 
                 entry['missed'] = row[3] 
                 entry['follow_up'] = row[4]
-                entry['coverage'] = row[4]
+                entry['coverage'] = row[5]
                 self.buffer.append(entry)
                 
         except FileNotFoundError:
